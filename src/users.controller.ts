@@ -1,17 +1,17 @@
-import { Controller, Put, Req, HttpCode, Get, HttpStatus, Res, Header, Post, Redirect, Param } from "@nestjs/common";
+import { Controller, Put, Req, HttpCode, Get, Headers, Query } from "@nestjs/common";
 import { of } from 'rxjs';
-import { Request, Response } from "express";
+import { query, Request, Response } from "express";
 
-interface videoParams {
-    id: number;
+interface QueyParams {
+    age: number;
     name: string;
 }
 @Controller("/users")
 export class UsersController {
 
-    @Get('/videos/:id/:name')
-    getVideos(@Param() params: videoParams) {
-        console.log(params)
+    @Get('/videos')
+    getVideos(@Headers('user-agent') headers: string) {
+        console.log(headers)
         return 'success'
     }
 }
