@@ -1,17 +1,25 @@
-import { Controller, Put, Req } from "@nestjs/common";
+import { Controller, Put, Req, HttpCode, Get, HttpStatus, Res, Header, Post, Redirect } from "@nestjs/common";
 import { of } from 'rxjs';
-import { Request } from "express";
+import { Request, Response } from "express";
 
 @Controller("/users")
 export class UsersController {
 
-    @Put("/profile/:id")
-    getProfile(@Req() req: Request) {
+    @Post("/profile")
+    @Redirect("/users/account")
+    @Header('Cache-Control', 'none')
+    @Header('X-Name', 'Abhishek')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    getProfile(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
 
-        console.log(req.params);
-
+        res.status(200);
         return of({
             hello: "world"
-        });
+        })
+    }
+
+    @Get('/account') 
+    redirectRoute(){
+        return 'Working Account'
     }
 }
