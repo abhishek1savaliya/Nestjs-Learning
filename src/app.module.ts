@@ -1,9 +1,9 @@
-import { Module, Inject, Injectable } from '@nestjs/common';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
+import { Module } from '@nestjs/common';
+import { JobController } from './jobs.controller';
+import { JobService } from './jobs.service';
 
 @Module({
-  controllers: [UsersController],
-  providers: [UsersService]
+  controllers: [JobController],
+  providers: [JobService],
 })
 export class AppModule { }
